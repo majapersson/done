@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Create list",
+    "completed": false,
+    "children": []
+  },
+  {
+    "title": "Learn React",
+    "completed": false,
+    "children": [
+      {
+        "title": "Try out Context API",
+        "completed": false
+      },
+      {
+        "title": "Also, Routing...",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "title": "Go for a run",
+    "completed": false,
+    "children": []
+  }
+]

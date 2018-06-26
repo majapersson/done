@@ -1,0 +1,8 @@
+.Task {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Task * {
+  padding: 0.5rem;
+}

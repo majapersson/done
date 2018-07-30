@@ -6,3 +6,8 @@
 .Task * {
   padding: 0.5rem;
 }
+
+.Task.completed {
+  opacity: 0.5;
+  text-decoration: line-through;
+}

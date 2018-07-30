@@ -3,11 +3,16 @@ import Task from "./Task.js";
 
 class TaskList extends Component {
   render() {
-    const { tasks, click } = this.props;
+    const { tasks, click, setParent, returnChildren } = this.props;
     return (
       <section className="TodoList">
-        {tasks.map((task, i) => (
-          <Task key={i} task={task} index={i} click={click} />
+        {tasks.map(task => (
+          <Task
+            key={task.id}
+            task={task}
+            click={returnChildren(task.id) > 0 ? setParent : click}
+            children={returnChildren(task.id)}
+          />
         ))}
       </section>
     );

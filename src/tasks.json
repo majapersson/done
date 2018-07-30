@@ -3,31 +3,30 @@
     "id": "1",
     "title": "Create list",
     "completed": false,
-    "children": []
+    "parent": ""
   },
   {
     "id": "2",
     "title": "Learn React",
     "completed": false,
-    "children": [
-      {
-        "id": "3",
-        "title": "Try out Context API",
-        "completed": false,
-        "children": []
-      },
-      {
-        "id": "4",
-        "title": "Also, Routing...",
-        "completed": false,
-        "children": []
-      }
-    ]
+    "parent": ""
+  },
+  {
+    "id": "3",
+    "title": "Try out Context API",
+    "completed": false,
+    "parent": "2"
+  },
+  {
+    "id": "4",
+    "title": "Also, Routing...",
+    "completed": false,
+    "parent": "2"
   },
   {
     "id": "5",
     "title": "Go for a run",
     "completed": true,
-    "children": []
+    "parent": ""
   }
 ]

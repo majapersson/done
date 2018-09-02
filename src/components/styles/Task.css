@@ -1,10 +1,10 @@
 .Task {
   display: flex;
   justify-content: space-between;
-}
-
-.Task * {
   padding: 0.5rem;
+
+  color: var(--white);
+  text-decoration: none;
 }
 
 .Task.completed {

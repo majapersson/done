@@ -6,8 +6,7 @@ import "./App.css";
 class App extends Component {
   state = {
     tasks: this.props.tasks,
-    parentTasks: this.props.tasks.filter(task => !task.parent),
-    currentTasks: []
+    tasksToShow: []
   };
 
   countChildren = id => {
@@ -23,22 +22,35 @@ class App extends Component {
     this.setState({ tasks });
   };
 
-  setParent = id => {
+  setTasks = (id = null) => {
     const tasks = [...this.state.tasks];
-    const currentTasks = tasks.filter(task => task.parent === id);
-    this.setState({ currentTasks });
+    let tasksToShow;
+
+    if (id) {
+      tasksToShow = tasks.filter(task => task.parent === id);
+    } else {
+      tasksToShow = tasks.filter(task => !task.parent);
+    }
+
+    const currentTaskIds = JSON.stringify(
+      this.state.tasksToShow.map(task => task.id)
+    );
+    const nextTaskIds = JSON.stringify(tasksToShow.map(task => task.id));
+    if (currentTaskIds === nextTaskIds) return;
+
+    this.setState({ tasksToShow });
   };
+
+  componentWillMount() {
+    this.componentDidUpdate();
+  }
 
   componentDidUpdate() {
     const { taskId } = this.props.match.params;
-    if (taskId && this.state.currentTasks.length === 0) {
-      this.setParent(taskId);
-    }
-    if (
-      this.props.location.pathname === "/" &&
-      this.state.currentTasks.length > 0
-    ) {
-      this.setState({ currentTasks: [] });
+    if (taskId) {
+      this.setTasks(taskId);
+    } else {
+      this.setTasks();
     }
   }
 
@@ -46,13 +58,14 @@ class App extends Component {
     const { pathname } = this.props.location;
     return (
       <div className="App">
-        <Header title="Done!" />
+        <Header
+          title="Done!"
+          location={pathname}
+          goBack={this.props.history.goBack}
+        />
         <TaskList
-          tasks={
-            pathname === "/" ? this.state.parentTasks : this.state.currentTasks
-          }
+          tasks={this.state.tasksToShow}
           click={this.toggleCompleted}
-          setParent={this.setParent}
           countChildren={this.countChildren}
         />
       </div>

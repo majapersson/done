@@ -4,7 +4,14 @@ import "./styles/Header.css";
 const Header = props => {
   return (
     <header className="Header">
-      <h1>{props.title}</h1>
+      <h1>
+        {props.location !== "/" ? (
+          <span onClick={props.goBack}>&lsaquo;</span>
+        ) : (
+          ""
+        )}
+        {props.title}
+      </h1>
     </header>
   );
 };
